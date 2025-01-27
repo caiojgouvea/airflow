@@ -84,6 +84,14 @@ def main():
         logger.info("Step 10: Verifying the downloaded file...")
         downloaded_files = os.listdir(download_dir)
         logger.info(f"Downloaded files: {downloaded_files}")
+        if downloaded_files:
+            for file in downloaded_files:
+                if file.endswith('csv'):
+                    old_path = os.path.join(download_dir, file)
+                    new_path = os.path.join(download_dir, 'emec_medicina.csv')
+                    os.rename(old_path, new_path)
+                    print(f"Arquivo renomeado para: {new_path}")
+                    break
 
     finally:
         logger.info("Step 11: Closing the browser...")
